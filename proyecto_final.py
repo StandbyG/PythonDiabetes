@@ -18,7 +18,7 @@ def load_model():
     try:
         return joblib.load("Random_Forest_diabetes_model.pkl")
     except FileNotFoundError:
-        st.error("❌ Error: El archivo 'modelo_entrenado.pkl' no fue encontrado. Asegúrate de subirlo junto con este script.")
+        st.error("❌ Error: El archivo 'Random_Forest_diabetes_model.pkl' no fue encontrado. Asegúrate de subirlo junto con este script.")
         st.stop()
 
 model = load_model()
