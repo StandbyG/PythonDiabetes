@@ -8,3 +8,4 @@ seaborn
 joblib
 lightgbm
 matplotlib
+display
