@@ -4,6 +4,7 @@ import numpy as np
 import joblib
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.linear_model import LogisticRegression
 
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
 
