@@ -10,3 +10,4 @@ lightgbm
 matplotlib
 display
 IPython
+scikit-learn==1.3.0
