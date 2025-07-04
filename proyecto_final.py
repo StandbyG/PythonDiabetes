@@ -5,7 +5,6 @@ import joblib
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
-
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
 
 # Configuración general
@@ -13,10 +12,14 @@ st.set_page_config(page_title="Predicción de Riesgo de Diabetes", layout="wide"
 st.title("🩺 Predicción de Riesgo de Diabetes")
 st.markdown("Esta aplicación permite analizar factores clínicos y de estilo de vida para estimar el riesgo de desarrollar diabetes.")
 
-# Cargar el modelo
+# Cargar modelo
 @st.cache_resource
 def load_model():
-    return joblib.load("modelo_entrenado.pkl")
+    try:
+        return joblib.load("Random_Forest_diabetes_model.pkl")
+    except FileNotFoundError:
+        st.error("❌ Error: El archivo 'modelo_entrenado.pkl' no fue encontrado. Asegúrate de subirlo junto con este script.")
+        st.stop()
 
 model = load_model()
 
@@ -59,9 +62,8 @@ if st.button("📊 Predecir Riesgo de Diabetes"):
     st.success("**RIESGO ALTO DE DIABETES**" if prediction == 1 else "**RIESGO BAJO DE DIABETES**")
     st.metric("Probabilidad estimada", f"{proba:.2%}")
 
-# Visualización de insights (simulados para visualización)
+# Visualización de insights simulados
 if st.checkbox("📊 Mostrar análisis visual (simulado)"):
-    # Datos ficticios
     df = pd.DataFrame({
         'Age': np.random.normal(45, 10, 300),
         'BMI': np.random.normal(28, 5, 300),
